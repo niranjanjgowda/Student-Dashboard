@@ -70,8 +70,14 @@ public class Menu_gui extends JFrame {
 		rdbtnNewRadioButton_1.setBounds(148, 122, 129, 23);
 		contentPane.add(rdbtnNewRadioButton_1);
 		
+		JRadioButton rdbtnNewRadioButton_2 = new JRadioButton("Timetable");
+		rdbtnNewRadioButton_2.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		rdbtnNewRadioButton_2.setBounds(148, 148, 109, 23);
+		contentPane.add(rdbtnNewRadioButton_2);
+		
 		bg.add(rdbtnNewRadioButton);
 		bg.add(rdbtnNewRadioButton_1); 
+		bg.add(rdbtnNewRadioButton_2);
 		
 		JLabel lblNewLabel_1 = new JLabel("");
 		lblNewLabel_1.setBounds(74, 204, 142, 31);
@@ -85,8 +91,13 @@ public class Menu_gui extends JFrame {
 					Admin.main(null);
 				}
 				else if(rdbtnNewRadioButton_1.isSelected()) {
-					frame.setVisible(false);
+					frame.dispose();
 					show_all_students.main(null);
+					
+				}
+				else if(rdbtnNewRadioButton_2.isSelected()) {
+					frame.dispose();
+					timetable_final.main("MONDAY");
 					
 				}
 				else {

@@ -8,7 +8,7 @@ import com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping;
 public class Sqlmanager {
 	public static Connection connect_withuserandpassword() {
 		try {
-			Connection c  = SqlMethods.connect("yourdbausername","yourpassword");
+			Connection c  = SqlMethods.connect("sql6504474","75e7KrYxTy");
 			return c;
 		}
 		catch(Exception e) {
@@ -189,7 +189,7 @@ class SqlMethods{
 		
 	}
 	
-	static ArrayList sqlselect(String cmd) {
+	static ArrayList sqlselect(String cmd){
 		ArrayList<ArrayList> out = new ArrayList<ArrayList>();
 		ArrayList<String> column_names = new ArrayList<String>();
 		@SuppressWarnings("rawtypes")

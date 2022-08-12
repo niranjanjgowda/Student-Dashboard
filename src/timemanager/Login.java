@@ -16,6 +16,7 @@ import javax.mail.MessagingException;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
 
 public class Login extends JFrame {
 	private JPanel contentPane;
@@ -78,30 +79,23 @@ public class Login extends JFrame {
 		contentPane.add(textField_1);
 		
 		JLabel lblNewLabel_3 = new JLabel("");
+		lblNewLabel_3.setForeground(Color.RED);
 		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblNewLabel_3.setBounds(109, 211, 198, 23);
+		lblNewLabel_3.setBounds(78, 211, 282, 23);
 		contentPane.add(lblNewLabel_3);
-		
-		JLabel lblNewLabel_4 = new JLabel("");
-		lblNewLabel_4.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_4.setBounds(103, 211, 257, 23);
-		contentPane.add(lblNewLabel_4);
-		
-		JLabel lblNewLabel_5 = new JLabel("");
-		lblNewLabel_5.setBounds(103, 209, 257, 25);
-		contentPane.add(lblNewLabel_5);
 		
 		JButton btnNewButton_1 = new JButton("Generate OTP");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				USN =  textField.getText();
+				try {
 				String cmd = "select email from students where usn = '"+USN+"'";
 				ArrayList result = SqlMethods.sqlselect(cmd);
 				String email_body;
 				OTP = "";
 				if(result.size()==1)
-					lblNewLabel_4.setText("USN NOT FOUND CONTACT DBMS ADMIN"); 
+					lblNewLabel_3.setText("USN NOT FOUND CONTACT DBMS ADMIN"); 
 				else {
 					for(int i=0;i<4;i++) {
 						int num = (int) (Math.random()*(10)+0);
@@ -112,10 +106,12 @@ public class Login extends JFrame {
 					try {
 						SendEmail.main(email,"OTP FOR LOGIN INTO STUDENT DASHBOARD", email_body);
 					} catch (Exception e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
-					lblNewLabel_5.setText("OTP SENT TO YOUR REGISTERED EMAIL ID");
+					lblNewLabel_3.setText("OTP SENT TO YOUR REGISTERED EMAIL ID");
+				}
+				} catch(java.lang.NullPointerException e1) {
+					lblNewLabel_3.setText("Unable to Connect to database check connection");
 				}
 			}
 		});
@@ -125,13 +121,13 @@ public class Login extends JFrame {
 		JButton btnNewButton = new JButton("LOGIN");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(textField_1.getText().equals("0000") | textField_1.getText().equals(OTP)) {
+				if((textField_1.getText().equals("0000") || textField_1.getText().equals(OTP))&&(!(textField.getText().equals("")&&textField!=null))) {
 					USN = textField.getText();
 					Menu_gui.main(null);
 					frame.dispose();
 				}
 				else
-					lblNewLabel_4.setText("OTP ENTERED IS WRONG");
+					lblNewLabel_3.setText("OTP ENTERED IS WRONG");
 					
 			}
 		});
