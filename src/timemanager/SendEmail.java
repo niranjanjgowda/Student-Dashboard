@@ -11,8 +11,8 @@ public class SendEmail {
   if(email == ""||Subject == "" || msg == "") throw new Exception();
 	 
   String host="smtp.gmail.com";  
-  final String user="mrdrdummy12@gmail.com"; 
-  final String password="smrscwuvgvexmuhz";  
+  final String user="email"; 
+  final String password="password";  
     
   String to=email;  
   
