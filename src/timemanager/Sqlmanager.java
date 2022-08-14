@@ -8,7 +8,7 @@ import com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping;
 public class Sqlmanager {
 	public static Connection connect_withuserandpassword() {
 		try {
-			Connection c  = SqlMethods.connect("sql6504474","75e7KrYxTy");
+			Connection c  = SqlMethods.connect("dbaname","dbpassword");
 			return c;
 		}
 		catch(Exception e) {
